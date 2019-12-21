@@ -1,0 +1,15 @@
+name: FieldCompletion
+prefix: FieldCompletion
+main: net\splaturn\FieldCompletion\Core
+version: 1.0.0
+api: 3.10.0 # pmmp/PocketMine-MP
+mcpe-protocol:
+  - 388 # 1.13.x
+  - 389 # 1.14.x
+author: yuko_fuyutsuki
+description: for field development
+
+commands:
+  completion:
+    description: 補完を実行します
+    default: true

@@ -27,7 +27,6 @@ class Session {
   private $end;
 
   public function __construct(Player $player) {
-    $this->executor = $player;
     $this->set($player);
   }
 
@@ -106,10 +105,16 @@ class Session {
 
   public static function get(Player $player): Session {
     $uuid = $player->getUniqueId()->toBinary();
-    return self::$sessions[$uuid] ?? new Session($player);
+    if (isset(self::$sessions[$uuid])) {
+      $session = self::$sessions[$uuid];
+      $session->set($player);
+      return $session;
+    }
+    return new Session($player);
   }
 
   private function set(Player $player) {
+    $this->executor = $player;
     $uuid = $player->getUniqueId()->toBinary();
     self::$sessions[$uuid] = $this;
   }

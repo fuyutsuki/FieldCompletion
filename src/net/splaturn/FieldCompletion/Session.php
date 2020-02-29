@@ -100,20 +100,20 @@ class Session {
     $diffStart = $vec2Start->subtract($rotationAxis);
     $diffEnd = $vec2End->subtract($rotationAxis);
 
-    $minX = min($diffStart->x, $diffEnd->x);
-    $minZ = min($diffStart->y, $diffEnd->y);
+    $minX = abs(min($diffStart->x, $diffEnd->x));
+    $minZ = abs(min($diffStart->y, $diffEnd->y));
 
     if ($minX > $minZ) {
-      $newStart = $diffStart->y * -1 + $rotationAxis->y;
+      $newStart = $rotationAxis->y - $diffStart->y;
       $targetStart = new Vector3($start->x, $start->y, $newStart);
 
-      $newEnd = $diffEnd->y * -1 + $rotationAxis->y;
+      $newEnd = $rotationAxis->y - $diffEnd->y;
       $targetEnd = new Vector3($end->x, $end->y, $newEnd);
     }else {
-      $newStart = $diffStart->x * -1 + $rotationAxis->x;
+      $newStart = $rotationAxis->x - $diffStart->x;
       $targetStart = new Vector3($newStart, $start->y, $start->z);
 
-      $newEnd = $diffEnd->x * -1 + $rotationAxis->x;
+      $newEnd = $rotationAxis->x - $diffEnd->x;
       $targetEnd = new Vector3($newEnd, $end->y, $end->z);
     }
 

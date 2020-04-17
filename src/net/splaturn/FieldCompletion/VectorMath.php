@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace net\splaturn\FieldCompletion;
 
 use pocketmine\math\Vector3;
+use function max;
+use function min;
 
 /**
  * Class VectorMath

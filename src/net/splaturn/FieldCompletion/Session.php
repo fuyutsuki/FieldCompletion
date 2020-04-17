@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace net\splaturn\FieldCompletion;
 
-use pocketmine\block\BlockIds;
 use pocketmine\block\EndRod;
 use pocketmine\block\IronTrapdoor;
 use pocketmine\block\Stair;
@@ -15,6 +14,9 @@ use pocketmine\block\WallBanner;
 use pocketmine\math\Vector2;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
+use function abs;
+use function count;
+use function min;
 
 /**
  * Class Session

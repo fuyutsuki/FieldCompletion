@@ -98,11 +98,14 @@ class Session {
     $end = $this->getEnd();
     $vec2End = new Vector2($end->getX(), $end->getZ());
 
-    $diffStart = $vec2Start->subtract($rotationAxis)->abs();
-    $diffEnd = $vec2End->subtract($rotationAxis)->abs();
+    $diffStart = $vec2Start->subtract($rotationAxis);
+    $diffEnd = $vec2End->subtract($rotationAxis);
 
-    $minX = min($diffStart->x, $diffEnd->x);
-    $minZ = min($diffStart->y, $diffEnd->y);
+    $diffStartAbs = $diffStart->abs();
+    $diffEndAbs = $diffEnd->abs();
+
+    $minX = min($diffStartAbs->x, $diffEndAbs->x);
+    $minZ = min($diffStartAbs->y, $diffEndAbs->y);
 
     if ($minX > $minZ) {
       $newStart = $rotationAxis->y - $diffStart->y;

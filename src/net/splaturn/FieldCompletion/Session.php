@@ -14,7 +14,6 @@ use pocketmine\block\WallBanner;
 use pocketmine\math\Vector2;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
-use function abs;
 use function count;
 use function min;
 
@@ -99,11 +98,11 @@ class Session {
     $end = $this->getEnd();
     $vec2End = new Vector2($end->getX(), $end->getZ());
 
-    $diffStart = $vec2Start->subtract($rotationAxis);
-    $diffEnd = $vec2End->subtract($rotationAxis);
+    $diffStart = $vec2Start->subtract($rotationAxis)->abs();
+    $diffEnd = $vec2End->subtract($rotationAxis)->abs();
 
-    $minX = abs(min($diffStart->x, $diffEnd->x));
-    $minZ = abs(min($diffStart->y, $diffEnd->y));
+    $minX = min($diffStart->x, $diffEnd->x);
+    $minZ = min($diffStart->y, $diffEnd->y);
 
     if ($minX > $minZ) {
       $newStart = $rotationAxis->y - $diffStart->y;
